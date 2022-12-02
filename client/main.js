@@ -40,15 +40,17 @@ const addFortune = () => {
 }
 createFortuneBtn.addEventListener("click", addFortune)
 
-const updatefortunebtn = document.getElementById('update-fortune-button')
+const updateFortuneBtn = document.getElementById('update-fortune-button')
 
-const updatefortune = () => {
+const updateFortune = () => {
     let fortuneIndex = document.getElementById('update-fortune-index')
     let updatedFortuneInput = document.getElementById('update-fortune-input')
 
     let body = {
         fortune: updatedFortuneInput
     }
+
+    updateFortune.addEventListener("click", updateFortune)
 
 axios.put(`http://localhost:4000/api/fortunes/${fortuneIndex}`, body)
 .then(res => {
