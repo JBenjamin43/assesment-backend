@@ -22,15 +22,15 @@ const getFortune = () => {
 }
 fortuneBtn.addEventListener("click", getFortune)
 
-let fortuneInput = document.getElementById('new-fortune-button')
+let createFortuneBtn = document.getElementById('new-fortune-button')
 
-const addfortune = () => {
+const addFortune = () => {
     let fortuneInput = document.getElementById('new-fortune-button')
 
-    let bosy = {
+    let body = {
         fortune: fortuneInput.value
     }
-    axios.posy("http://localhost:4000/api/fortunes/", body)
+    axios.post("http://localhost:4000/api/fortunes/", body)
     .then(res => {
         alert(res.data)
 
@@ -38,7 +38,7 @@ const addfortune = () => {
     })
 
 }
-newfortuneBtn.addEventListener("click", addfortune)
+createFortuneBtn.addEventListener("click", addFortune)
 
 const updatefortunebtn = document.getElementById('update-fortune-button')
 
@@ -62,11 +62,13 @@ axios.put(`http://localhost:4000/api/fortunes/${fortuneIndex}`, body)
 const deleteFortuneBtn = document.getElementById('delete-fortune-button')
 
 const deleteFortune = () => {
-    let deleteFortuneInput = document.getElementById('delete-fortune=input')
+    let deleteFortuneInput = document.getElementById('delete-fortune-input')
 
-    AuthenticatorAssertionResponse.delete(`http://localhost:4000/api/fortunes/${deleteFortuneInput.value}`)
+    axios.delete(`http://localhost:4000/api/fortunes/${deleteFortuneInput.value}`)
     .then(res =>{
         alert(res.data)
-        
+        deleteFortune.value = ''
     })
 }
+
+deleteFortuneBtn.addEventListener('click', deleteFortune)
