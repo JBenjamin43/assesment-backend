@@ -1,6 +1,6 @@
 const { getCompliment } = require('./index.js')
-const { getFortune, deleteFortune, createFortune, updateFortune } = require('./controller.js')
-let fortune = ["Believe it can be done", "A pleasant surprise is waiting for you", "A small donation is call for. It is the right thing to do.", "Any day above ground is a good day."]
+const { getFortune, deleteFortune, createFortune, updateFortune } = require('./index.js')
+let fortunes = ["Believe it can be done", "A pleasant surprise is waiting for you", "A small donation is call for. It is the right thing to do.", "Any day above ground is a good day."]
 
 module.exports = {
 
@@ -27,7 +27,7 @@ module.exports = {
     addFortune: (req,res) => {
         let {fortune} = req.body
 
-        fortune.push(fortune)
+        fortunes.push(fortune)
 
     res.status(200).send('Your fortune was added!')
     },

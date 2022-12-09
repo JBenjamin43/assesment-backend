@@ -1,31 +1,30 @@
+
+
 const complimentBtn = document.getElementById("complimentButton")
+const forturnBtn = document.getElementById('fortuneButton')
+const newFortuneBtn = document.getElementById('new-fortune-button')
+const updateFortuneBtn = document.getElementById('update-fortune-button')
+const deleteFortuneBtn = document.getElementById('delete-fortune-button')
 
 const getCompliment = () => {
     axios.get("http://localhost:4000/api/compliment/")
-        .then(res => {
+        .then((res) => {
             const data = res.data;
-            console.log("hello world")
             alert(data);
     }) 
 }       
 
-complimentBtn.addEventListener('click', getCompliment)
-
-const fortuneBtn = document.getElementById('forturnbutton')
 
 const getFortune = () => {
     axios.get("http://localhost:4000/api/fortunes/")
-    .then(res => {
+    .then((res) => {
         const data = res.data;
         alert(data)
     })
 }
-fortuneBtn.addEventListener("click", getFortune)
-
-let createFortuneBtn = document.getElementById('new-fortune-button')
 
 const addFortune = () => {
-    let fortuneInput = document.getElementById('new-fortune-button')
+    let fortuneInput = document.getElementById('new-fortune-input')
 
     let body = {
         fortune: fortuneInput.value
@@ -33,35 +32,32 @@ const addFortune = () => {
     axios.post("http://localhost:4000/api/fortunes/", body)
     .then(res => {
         alert(res.data)
-
+        fortuneInput.value = ''
         
     })
 
 }
-createFortuneBtn.addEventListener("click", addFortune)
 
-const updateFortuneBtn = document.getElementById('update-fortune-button')
 
 const updateFortune = () => {
     let fortuneIndex = document.getElementById('update-fortune-index')
     let updatedFortuneInput = document.getElementById('update-fortune-input')
 
     let body = {
-        fortune: updatedFortuneInput
+        fortune: updatedFortuneInput.value
     }
 
-    updateFortune.addEventListener("click", updateFortune)
 
-axios.put(`http://localhost:4000/api/fortunes/${fortuneIndex}`, body)
+axios.put(`http://localhost:4000/api/fortunes/${fortuneIndex.value}`, body)
 .then(res => {
     alert(res.data)
-    fortuneIndex.value = ""
+    fortuneIndex.value = ''
+    updatedFortuneInput = ''
 
 })
 
 }
 
-const deleteFortuneBtn = document.getElementById('delete-fortune-button')
 
 const deleteFortune = () => {
     let deleteFortuneInput = document.getElementById('delete-fortune-input')
@@ -73,4 +69,9 @@ const deleteFortune = () => {
     })
 }
 
+
+complimentBtn.addEventListener('click', getCompliment)
+forturnBtn.addEventListener("click", getFortune)
+newFortuneBtn.addEventListener("click", addFortune)
+updateFortuneBtn.addEventListener("click", updateFortune)
 deleteFortuneBtn.addEventListener('click', deleteFortune)
